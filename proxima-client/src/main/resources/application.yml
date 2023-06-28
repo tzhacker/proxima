@@ -1,0 +1,12 @@
+server:
+  port: 22222
+  http2:
+    enabled: true
+
+grpc:
+  client:
+    proxima-server:
+      address: 'http://127.0.0.1:8888'
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext

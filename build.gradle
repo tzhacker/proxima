@@ -1,0 +1,57 @@
+buildscript {
+    ext {
+        springBootVersion = '3.1.0'
+    }
+}
+
+plugins {
+    id 'java-library'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.graalvm.buildtools.native' version '0.9.20'
+}
+
+group = 'com.yrml'
+version = '0.0.1'
+sourceCompatibility = '17'
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+allprojects {
+
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'org.graalvm.buildtools.native'
+
+    repositories {
+        mavenCentral()
+    }
+
+    configurations.configureEach {
+        exclude module: 'spring-boot-devtools'
+
+    }
+
+    dependencies {
+
+//        api platform('org.springframework.boot:spring-boot-dependencies:' + springBootVersion)
+        implementation 'org.springframework.boot:spring-boot-starter'
+
+        implementation 'cn.hutool:hutool-all:5.8.20'
+
+        compileOnly 'org.projectlombok:lombok'
+        developmentOnly 'org.springframework.boot:spring-boot-devtools'
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'io.projectreactor:reactor-test'
+    }
+
+}

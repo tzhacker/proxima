@@ -1,0 +1,6 @@
+rootProject.name = 'proxima'
+
+include 'proxima-base'
+include 'proxima-server'
+include 'proxima-client'
+
